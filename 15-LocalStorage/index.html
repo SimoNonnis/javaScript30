@@ -27,15 +27,25 @@
       <input type="text" name="item" placeholder="Item Name" required>
       <input type="submit" value="+ Add Item">
     </form>
+    <!-- 1. Clear all -->
+    <div class="controlsList">
+      <button data-type="clear" >Clear all</button>
+      <button data-type="check" >Check all</button>
+      <button data-type="unCheck" >Unckeck all</button>
+    </div>
+    <!-- 2. Check all -->
+    <!-- 3. Unckeck all -->
   </div>
 
 <script>
   const addItems = document.querySelector('.add-items');
   const itemsList = document.querySelector('.plates');
+  const controlsList = document.querySelector('.controlsList');
   const items =  JSON.parse(localStorage.getItem('items')) || [];
 
   addItems.addEventListener('submit', addItem);
   itemsList.addEventListener('click', toggleDone);
+  controlsList.addEventListener('click', manageButtons);
 
   populateList(items, itemsList);
 
@@ -78,6 +88,20 @@
         </li>
       `;
     }).join('');
+  }
+
+  function manageButtons(e) {
+    if (!e.target.matches('button')) return;
+
+    if (e.target.dataset.type === 'clear') {
+      console.log('Clear');
+    } else if (e.target.dataset.type === 'check') {
+      console.log('Check');
+    } else if (e.target.dataset.type === 'unCheck') {
+      console.log('unCheck');
+    } else {
+      return
+    }
   }
 
 </script>
