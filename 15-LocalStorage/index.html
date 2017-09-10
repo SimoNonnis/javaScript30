@@ -94,7 +94,8 @@
     if (!e.target.matches('button')) return;
 
     if (e.target.dataset.type === 'clear') {
-      console.log('Clear');
+      itemsList.innerHTML = '';
+      localStorage.removeItem('items');
     } else if (e.target.dataset.type === 'check') {
       console.log('Check');
     } else if (e.target.dataset.type === 'unCheck') {
