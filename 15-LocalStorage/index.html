@@ -27,46 +27,44 @@
       <input type="text" name="item" placeholder="Item Name" required>
       <input type="submit" value="+ Add Item">
     </form>
-    <!-- 1. Clear all -->
+
     <div class="controlsList">
       <button data-type="clear" >Clear all</button>
-      <button data-type="check" >Check all</button>
+      <button data-type="check" >Check/Unckeck</button>
       <button data-type="unCheck" >Unckeck all</button>
     </div>
-    <!-- 2. Check all -->
-    <!-- 3. Unckeck all -->
   </div>
+
+
+
+
+
+
 
 <script>
   const addItems = document.querySelector('.add-items');
   const itemsList = document.querySelector('.plates');
   const controlsList = document.querySelector('.controlsList');
-  const items =  JSON.parse(localStorage.getItem('items')) || [];
+  let items =  JSON.parse(localStorage.getItem('items')) || [];
 
   addItems.addEventListener('submit', addItem);
   itemsList.addEventListener('click', toggleDone);
   controlsList.addEventListener('click', manageButtons);
 
-  populateList(items, itemsList);
+  populateList();
 
   function addItem(e) {
     e.preventDefault();
 
-    // Get first element of Array
-    const [ input ] = e.target.elements;
-    const text = input.value;
-    // or we could do
-    // const text = (this.querySelector('[name=item]')).value;
-
+    const text = (this.querySelector('[name=item]')).value;
     const item = {
       text,
       done: false,
     }
 
     items.push(item);
-    populateList(items, itemsList);
+    populateList();
     localStorage.setItem('items', JSON.stringify(items));
-    // Reset input form (this refers to addItems form).
     this.reset();
   }
 
@@ -76,11 +74,11 @@
     const index = e.target.dataset.index;
     items[index].done = !items[index].done;
     localStorage.setItem('items', JSON.stringify(items));
-    populateList(items, itemsList);
+    populateList();
   }
 
-  function populateList(plates = [], platesList) {
-    platesList.innerHTML = plates.map(({ text, done }, i) => {
+  function populateList() {
+    itemsList.innerHTML = items.map(({ text, done }, i) => {
       return `
         <li>
           <input type="checkbox" data-index=${i} id="item${i}" ${done === true ? 'checked' : ''} />
@@ -93,15 +91,33 @@
   function manageButtons(e) {
     if (!e.target.matches('button')) return;
 
-    if (e.target.dataset.type === 'clear') {
-      itemsList.innerHTML = '';
-      localStorage.removeItem('items');
-    } else if (e.target.dataset.type === 'check') {
-      console.log('Check');
-    } else if (e.target.dataset.type === 'unCheck') {
-      console.log('unCheck');
-    } else {
-      return
+    const action = e.target.dataset.type;
+
+    switch (action) {
+      case 'clear':
+        itemsList.innerHTML = '';
+        localStorage.removeItem('items');
+        items = [];
+
+        break;
+      case 'check':
+        items.map((item, index) => {
+          item.done = true;
+        })
+        localStorage.setItem('items', JSON.stringify(items));
+        populateList();
+
+        break;
+      case 'unCheck':
+        items.map((item, index) => {
+          item.done = false;
+        })
+        localStorage.setItem('items', JSON.stringify(items));
+        populateList();
+
+        break;
+      default:
+        return
     }
   }
 
