@@ -112,18 +112,28 @@
 
   <script>
     let countDown;
+    const timerDisplay = document.querySelector('.display__time-left');
 
     function timer(seconds) {
       const startTime = Date.now();
       const endTime = startTime + seconds * 1000;
+
+      displayTimeLeft(seconds);
 
       countDown = setInterval(() => {
         const timeLeft = Math.round((endTime - Date.now()) / 1000);
 
         if (timeLeft < 0) { return clearInterval(countDown) };
 
-        console.log(timeLeft);
+        displayTimeLeft(timeLeft);
       }, 1000);
+    }
+
+    function displayTimeLeft(seconds) {
+      const minutes = Math.floor(seconds / 60);
+      const reminderSeconds = seconds % 60;
+      const display = `${minutes}:${reminderSeconds}`;
+      timerDisplay.textContent = display;
     }
   </script>
 </body>
