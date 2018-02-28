@@ -132,7 +132,7 @@
     function displayTimeLeft(seconds) {
       const minutes = Math.floor(seconds / 60);
       const reminderSeconds = seconds % 60;
-      const display = `${minutes}:${reminderSeconds}`;
+      const display = `${minutes}:${reminderSeconds < 10 ? `0${reminderSeconds}` : reminderSeconds }`;
       timerDisplay.textContent = display;
     }
   </script>
