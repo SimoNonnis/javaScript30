@@ -113,12 +113,27 @@
   <script>
     let countDown;
     const timerDisplay = document.querySelector('.display__time-left');
+    const endTimeDisplay = document.querySelector('.display__end-time');
+    const buttons = document.querySelectorAll('[data-time]');
+    const customTime = document.customForm;
+
+    buttons.forEach(button => button.addEventListener('click', startTimer));
+    customTime.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const minutes = this.minutes.value;
+
+      timer(minutes * 60);
+      this.reset();
+    });
 
     function timer(seconds) {
+      clearInterval(countDown);
+
       const startTime = Date.now();
       const endTime = startTime + seconds * 1000;
 
       displayTimeLeft(seconds);
+      displayEndTime(endTime);
 
       countDown = setInterval(() => {
         const timeLeft = Math.round((endTime - Date.now()) / 1000);
@@ -133,7 +148,23 @@
       const minutes = Math.floor(seconds / 60);
       const reminderSeconds = seconds % 60;
       const display = `${minutes}:${reminderSeconds < 10 ? `0${reminderSeconds}` : reminderSeconds }`;
+
       timerDisplay.textContent = display;
+      document.title = `Countdown Timer: ${display}`;
+    }
+
+    function displayEndTime(timestamp) {
+      const end = new Date(timestamp);
+      const hour = end.getHours();
+      const minutes = end.getMinutes();
+
+      endTimeDisplay.textContent = `Be back at ${hour}:${minutes < 10 ? `0${minutes}` : minutes }`;
+    }
+
+    function startTimer({ target }) {
+      const seconds = target.dataset.time;
+
+      timer(seconds);
     }
   </script>
 </body>
