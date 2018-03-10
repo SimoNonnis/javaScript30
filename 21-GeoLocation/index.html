@@ -47,7 +47,7 @@
     .units {
       font-size: 15px;
     }
-    
+
   </style>
 </head>
 <body>
@@ -58,7 +58,18 @@
     <span class="speed-value">0</span>
     <span class="units">KM/H</span>
   </h1>
+
   <script>
+    const arrow = document.querySelector('.arrow');
+    const speed = document.querySelector('.speed-value');
+
+    navigator.geolocation.watchPosition(data => {
+      speed.textContent = data.coords.speed;
+      arrow.style.transform = `rotate(${data.coords.heading}deg)`
+    }, err => {
+      console.log(err);
+      alert('Allow geolocation')
+    });
   </script>
 </body>
 </html>
