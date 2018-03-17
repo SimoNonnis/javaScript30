@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Whack A Mole!</title>
     <link href='https://fonts.googleapis.com/css?family=Amatic+SC:400,700' rel='stylesheet' type='text/css'>
-    
+
     <style>
         html {
   box-sizing: border-box;
@@ -112,6 +112,10 @@ h1 {
         const holes = document.querySelectorAll('.hole');
         const scoreBoard = document.querySelector('.score');
         const moles = document.querySelectorAll('.mole');
+
+        function randomTime(min, max) {
+          return Math.round(Math.random() * (max - min) + min);
+        }
 
     </script>
 </body>
