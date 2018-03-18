@@ -109,8 +109,8 @@ h1 {
     </div>
 
     <script>
-        const holes = document.querySelectorAll('.hole');
         const scoreBoard = document.querySelector('.score');
+        const holes = document.querySelectorAll('.hole');
         const moles = document.querySelectorAll('.mole');
         let lastHole;
         let timeUp = false;
@@ -140,9 +140,18 @@ h1 {
 
             setTimeout(() => {
               hole.classList.remove('up');
-              timeUp && peep();
+              !timeUp && peep();
             }, time);
           }
+
+          function startGame() {
+            scoreBoard.textContent = 0;
+            timeUp = false;
+            peep();
+            setTimeout(() => timeUp = true, 10000);
+          }
+
+
 
     </script>
 </body>
