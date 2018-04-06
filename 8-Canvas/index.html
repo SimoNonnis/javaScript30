@@ -16,6 +16,14 @@
   ctx.lineCap = 'round';
 
   let isDrawing = false;
+  let lastX = 0;
+  let lastY = 0;
+
+  canvas.addEventListener('mousemove', draw);
+
+  function draw(e) {
+    console.log(e);
+  }
 
 </script>
 
