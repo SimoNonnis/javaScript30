@@ -41,6 +41,10 @@
 
     [lastX, lastY] = [e.offsetX,e.offsetY];
     hue++;
+
+    if (hue >= 360) {
+      hue = 0;
+    }
   }
 
 </script>
