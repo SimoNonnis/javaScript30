@@ -189,7 +189,8 @@
       const [minutes, seconds ] = timeCode.split(':').map(parseFloat);
       return (minutes * 60) + seconds;
 
-    });
+    })
+    .reduce((total, secs) => total + secs, 0);
 
   console.log(seconds);
 </script>
