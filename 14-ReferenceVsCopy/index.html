@@ -17,8 +17,10 @@
 
 // Let's say we have an array
 const players = ['Simon', 'Sarah', 'Luba', 'Andy'];
-const team = players;
-console.log(players, team);
+//const team = players.slice();
+// const team = [].concat(players);
+// const team = Array.from(players);
+const team = [...players];
 
 team[3] = 'Nikky';
 console.log(players, team);
