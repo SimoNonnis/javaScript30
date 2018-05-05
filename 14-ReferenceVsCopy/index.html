@@ -17,29 +17,27 @@
 
 // Let's say we have an array
 const players = ['Simon', 'Sarah', 'Luba', 'Andy'];
-//const team = players.slice();
+// const team = players.slice();
 // const team = [].concat(players);
 // const team = Array.from(players);
 const team = [...players];
 
 team[3] = 'Nikky';
-console.log(players, team);
+// console.log(players, team);
 
 // The same thing goes for objects, let's say we have a person object
-
-// with Objects
 const person = {
   name: 'Simon Nonnis',
   age: 40
 };
 
-// and think we make a copy:
+// const person1 = person;
+// person1.age = 50;
+// const person1 = Object.assign({}, person, { name: 'Luba', age: 30 });
+const person1 = { ...person };
+person1.name = 'Karl';
 
-// how do we take a copy instead?
-
-// We will hopefully soon see the object ...spread
-
-// Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+console.log(person, person1);
 </script>
 
 </body>
