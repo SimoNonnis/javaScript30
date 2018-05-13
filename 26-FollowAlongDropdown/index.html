@@ -230,6 +230,9 @@ function handleEnter({ target }) {
 
   setTimeout(() => target.classList.add('trigger-enter-active'), 150);
   background.classList.add('open');
+  const dropdown = target.querySelector('.dropdown');
+  const navCoords = nav.getBoundingClientRect();
+  const dropdownCoords = dropdown.getBoundingClientRect();
 }
 
 function handleLeave({ target }) {
