@@ -229,10 +229,12 @@ function handleEnter({ target }) {
   target.classList.add('trigger-enter');
 
   setTimeout(() => target.classList.add('trigger-enter-active'), 150);
+  background.classList.add('open');
 }
 
 function handleLeave({ target }) {
   target.classList.remove('trigger-enter', 'trigger-enter-active');
+  background.classList.remove('open');
 }
 
 triggers.forEach(trigger =>
