@@ -233,6 +233,14 @@ function handleEnter({ target }) {
   const dropdown = target.querySelector('.dropdown');
   const navCoords = nav.getBoundingClientRect();
   const dropdownCoords = dropdown.getBoundingClientRect();
+
+  const coords = {
+    width: dropdownCoords.width,
+    height: dropdownCoords.height
+  };
+
+  background.style.setProperty('width', `${coords.width}px`);
+  background.style.setProperty('height', `${coords.height}px`);
 }
 
 function handleLeave({ target }) {
