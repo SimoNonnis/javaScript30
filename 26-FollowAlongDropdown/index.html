@@ -236,11 +236,17 @@ function handleEnter({ target }) {
 
   const coords = {
     width: dropdownCoords.width,
-    height: dropdownCoords.height
+    height: dropdownCoords.height,
+    top: dropdownCoords.top,
+    left: dropdownCoords.left
   };
 
   background.style.setProperty('width', `${coords.width}px`);
   background.style.setProperty('height', `${coords.height}px`);
+  background.style.setProperty(
+    'transform',
+    `translate(${coords.left}px, ${coords.top}px)`
+  );
 }
 
 function handleLeave({ target }) {
