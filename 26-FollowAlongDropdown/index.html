@@ -227,7 +227,11 @@ const nav = document.querySelector('.top');
 function handleEnter({ target }) {
   target.classList.add('trigger-enter');
 
-  setTimeout(() => target.classList.add('trigger-enter-active'), 150);
+  setTimeout(() => {
+    if (target.classList.contains('trigger-enter')) {
+      target.classList.add('trigger-enter-active');
+    }
+  }, 150);
   background.classList.add('open');
   const dropdown = target.querySelector('.dropdown');
   const navCoords = nav.getBoundingClientRect();
