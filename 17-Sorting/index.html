@@ -64,11 +64,11 @@ function strip(bandName) {
   return bandName.replace(/^(a |an |the|oh,)/i, '').trim();
 }
 const stripedNames = bands.map(strip);
-const sortedBands = stripedNames.sort((a, b) => {
-  return a > b ? 1 : -1;
-});
+const sortedBands = stripedNames.sort((a, b) => (a > b ? 1 : -1));
 
-console.log(sortedBands);
+document.querySelector('#bands').innerHTML = sortedBands
+  .map(band => `<li>${band}</li>`)
+  .join('');
 </script>
 
 </body>
