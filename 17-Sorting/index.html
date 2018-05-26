@@ -61,7 +61,7 @@ const bands = [
 ];
 
 function strip(bandName) {
-  return bandName.replace(/^(a |an |the|oh,)/i, '').trim();
+  return bandName.replace(/^(a |an |the |oh, )/i, '').trim();
 }
 const stripedNames = bands.map(strip);
 const sortedBands = stripedNames.sort((a, b) => (a > b ? 1 : -1));
